@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="" name="description">
+<meta content="" name="author">
+
+<meta name="experiment-short-name" content="characterize-temperature-sensor">
+<meta name="developer-institute" content="coep">
+<meta name="learning-unit" content="CHARACTERIZE THE TEMPERATURE SENSOR(RTD)">
+<meta name="task-name" content="Theory">
+
+<!-- For iPhone -->
+<meta name="msapplication-TileColor" content="#4076e0">
+<!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#4076e0">
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#4076e0">
+<title>वर्चुअल लैब्स</title>
+<link rel="shortcut icon" href="./assets/images/favicon.ico">
+<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Raleway&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./assets/css/github-markdown.min.css">
+<link rel="stylesheet" href="./assets/css/vlabs-style.css">
+
+<script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+<style>
+h1 {
+font-size: 1.8rem;
+}
+h2 {
+font-size: 1.4rem;
+}
+h3 {
+font-size: 1.2rem;
+}
+
+h2, h3 {
+font-weight: 800;
+}
+</style>
+</head>
+<body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+
+<header class="vlabs-header sticky-top bg-white">
+<nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+
+<button class="navbar-toggler px-4" type="button" onclick="toggle()">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="d-flex justify-content-center">
+<a href="https://vlab.co.in" class="navbar-brand">
+<img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+</a>
+</div>
+
+<div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center">
+<ul class="navbar-nav ml-auto text-center d-flex flex-md-row">
+<li class="nav-item px-2 m-1">
+<a href="https://vlab.co.in">होम</a>
+</li>
+<li class="nav-item px-2 m-1">
+<a href="https://vlab.co.in/participating-institutes">भागीदार</a>
+</li>
+<li class="nav-item px-2 m-1">
+<a href="https://vlab.co.in/contact-us">संपर्क</a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+<div class="row d-flex justify-content-between">
+<div class="flex-column">
+
+<div class="row py-4 px-4 breadcrumbs">
+<a href="https://www.vlab.co.in/broad-area-electrical-engineering">
+इलेक्ट्रिकल इंजीनियरिंग
+</a>
+<span class="mx-2">
+<i aria-hidden="true" class="fa fa-angle-right"></i>
+</span>
+<a href="https://sl-coep.vlabs.ac.in">
+सेंसर मॉडलिंग & सिमुलेशन लैब
+</a>
+<span class="mx-2">
+<i aria-hidden="true" class="fa fa-angle-right"></i>
+</span>
+<a href="https://sl-coep.vlabs.ac.in/List of experiments.html">
+प्रयोग
+</a>
+</div>
+
+</div>
+<div class="flex-column">
+<div id="plugin-bug-report"></div>
+<div id="plugin-rating"></div>
+</div>
+</div>
+<div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+<div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">
+<a href="https://vlab.co.in" class="navbar-brand">
+<img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+</a>
+</h5>
+<button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body nav-menu">
+<div>
+<div class="d-flex nav-menu-body">
+<a href="index.html" class="p-2 ">
+उद्देश्य
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="theory.html" class="p-2  current-item ">
+सिद्धांत
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="pretest.html" class="p-2 ">
+प्रीटेस्ट
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="procedure.html" class="p-2 ">
+कार्यप्रणाली
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="simulation.html" class="p-2 ">
+सिमुलेशन
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="posttest.html" class="p-2 ">
+पोस्टटेस्ट
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="references.html" class="p-2 ">
+सन्दर्भ
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="feedback.html" class="p-2 ">
+प्रतिपुष्टि
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+<div>
+<div class="d-flex nav-menu-body">
+<a href="index.html" class="p-2 ">
+उद्देश्य
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="theory.html" class="p-2  current-item ">
+सिद्धांत
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="pretest.html" class="p-2 ">
+प्रीटेस्ट
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="procedure.html" class="p-2 ">
+कार्यप्रणाली
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="simulation.html" class="p-2 ">
+सिमुलेशन
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="posttest.html" class="p-2 ">
+पोस्टटेस्ट
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="references.html" class="p-2 ">
+सन्दर्भ
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+<div>
+<div class="d-flex nav-menu-body">
+<a href="feedback.html" class="p-2 ">
+प्रतिपुष्टि
+</a>
+
+</div>
+<div id="t-" class="collapse">
+<div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+</div>
+</div>
+</div>
+</div>          <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+<div class="text-center fix-spacing">
+<h2 id="characterize-the-temperature-sensorrtd">टेंपरेचर सेंसर (RTD) को चिह्नित करें</h2>
+
+</div>
+<h3 id="prerequisite">पूर्वापेक्षा:</h3>
+<p>RTD पर व्यावहारिक प्रदर्शन करने से पहले किसी को अच्छी तरह से वाकिफ होना चाहिए:</p>
+<ol>
+<li><p>  तापमान मापन का महत्व।</p>
+</li>
+<li><p>  तापमान मापन की विभिन्न इकाइयाँ और एक इकाई का दूसरे में रूपांतरण।</p>
+</li>
+<li><p>  तापमान मापन के विभिन्न तरीकों का ज्ञान।</p>
+</li>
+<li><p>  प्रक्रिया अंतराल, पॉजिटिव एंड निगेटिव टेंपरेचर कोएफिशिएन्ट, निगेटिव टेंपरेचर, वर्च्युअल टेंपरेचर आदि जैसे शब्दों का अर्थ।</p>
+</li>
+<li><p>एक्टिव एंड पैसिव ट्रांसड्यूसर्स का ज्ञान। </p>
+<h3 id="temperature">तापमान:</h3>
+</li>
+</ol>
+<p>तापमान किसी पदार्थ में कणों की औसत गर्मी या ऊष्मीय ऊर्जा का एक उपाय है।  चूंकि यह एक औसत माप है, यह किसी वस्तु में कणों की संख्या पर निर्भर नहीं करता है।  इस अर्थ में यह उसके आकार पर निर्भर नहीं करता है।  उदाहरण के लिए, एक छोटे कप में उबलते पानी का तापमान एक बड़े बर्तन में उबलते पानी के तापमान के समान होता है।  यहां तक ​​कि बड़ा बर्तन कप से बहुत बड़ा है और इसमें लाखों पानी के अणु हैं।  इंटरनेशनल सिस्टम ऑफ यूनिट्स (SI) में तापमान (T) की मूल इकाई केल्विन (K) है।  तापमान की आमतौर पर उपयोग की जाने वाली अन्य इकाइयाँ डिग्री सेल्सियस (°C) और डिग्री फ़ारेनहाइट (°F) हैं। </p>
+<h3 id="electrical-resistance">इलेक्ट्रिकल रेज़िस्टन्स</h3>
+<p>किसी वस्तु का इलेक्ट्रिकल रेज़िस्टन्स इलेक्ट्रिकल करंट के प्रवाह के विरोध का एक उपाय है।  सामग्री और शर्तों की एक विस्तृत श्रृंखला के लिए, इलेक्ट्रिकल रेज़िस्टन्स वस्तु के माध्यम से या पोटेन्शिअल डिफरन्स (वोल्टेज) की मात्रा पर निर्भर नहीं करता है।  इसका मतलब है कि रेज़िस्टन्स R दिए गए तापमान और सामग्री के लिए स्थिरांक है।  इसलिए, किसी वस्तु के रेज़िस्टन्स को Ohm’s लॉ के अनुसार वोल्टेज से करंट के अनुपात के रूप में  परिभाषित किया जा सकता है। </p>
+<blockquote>
+<p>Ohm का नियम:
+R = V/I</p>
+</blockquote>
+<p>रेज़िस्टन्स की इकाई ओम (Ohm) है। </p>
+<h4 id="temperature-measurement-using-rtd">RTD का उपयोग करके सेंसर के</h4>
+<p>तापमान के मापन के लिए कई तापमान मापन उपलब्ध है।  सबसे लिनियर, स्थिर और पुनरुत्पादनीय तापमान सेंसर में से एक RTD, रेज़िस्टन्स टेंपरेचर डिटेक्टर है।  RTD में, आउटपुट रेज़िस्टन्स तापमान के साथ बदलता है।  RTD एक पॉझिटिव टेंपरेचर कोएफिशिअंट डिवाइस है।  तापमान के साथ धातु का रेज़िस्टन्स बढ़ता है।  धातु की रिज़िस्टिव प्रॉपर्टी को इसकी रिज़िस्टिविटी कहा जाता है।  रिज़िस्टिव प्रॉपर्टी एक दिए गए मूल्य के RTD को गढ़ने के लिए आवश्यक लंबाई और पार अनुभागीय क्षेत्र को परिभाषित करती है।  रेज़िस्टन्स प्रॉपर्टी लंबाई और विपरीत रूप से पार अनुपातिक क्षेत्र के आनुपातिक है और R = ρl/A संबंध द्वारा</p>
+<pre><code>                             दिया जाता है।
+</code></pre>
+<p> जहाँ ‘ R ' धातु का रेज़िस्टन्स है, वहीं 'ρ' धातु की रिज़िस्टिविटी है, 'l' धातु की लंबाई है और 'A' धातु के क्रॉस सेक्शन का क्षेत्र है।</p>
+<center><img src="images/img1.png" title=""></center>
+
+# रेज़िस्टन्स टेंपरेचर डिटेक्टर (RTD)
+
+<p>रेज़िस्टन्स टेंपरेचर डिटेक्टर (RTD), जैसा कि नाम से पता चलता है, एक सेंसर है जिसका उपयोग तापमान के साथ रेज़िस्टन्स को सहसंबंधित करके तापमान को मापने के लिए किया जाता है।  अधिकांश RTD तत्वों में एक सिरेमिक या ग्लास कोर के चारों ओर लिपटे बारिक कुंडलित तार की लंबाई होती है।  तत्व आमतौर पर काफी नाजुक होता है, इसलिए इसे बचाने के लिए अक्सर एक म्यान प्रोब के अंदर रखा जाता है।  RTD तत्व एक शुद्ध धातुओं से बनाया गया है जैसा कि नीचे उल्लेख किया गया है।  तापमान में परिवर्तन के रूप में रेज़िस्टन्स में अनुमानित परिवर्तन करने के लिए सामग्री प्रॉपर्टी का उपयोग तापमान निर्धारित करने के लिए किया जाता है।</p>
+<p>आमतौर पर इस्तेमाल किया RTD मटेरिअल:</p>
+<ul>
+<li>प्लेटिनम (सबसे लोकप्रिय और अचूक)</li>
+<li>निकेल</li>
+<li>कॉपर</li>
+<li>बाल्को (दुर्लभ)</li>
+<li>टंगस्टन (दुर्लभ)</li>
+</ul>
+<h3 id="temperature-calculations">तापमान गणना:</h3>
+<p>RTD उन धातुओं से निर्मित होते हैं जिनका रेज़िस्टन्स तापमान के साथ बढ़ता है।  एक सीमित तापमान सीमा के भीतर, इसका रेज़िस्टन्स तापमान के साथ जल्दी बढ़ता है:
+Rt = R0[1+ α (t-t0)]  </p>
+<p>जहाँ:
+Rt = 't' तापमान पर रेज़िस्टन्स <br>R0 = एक संदर्भ तापमान पर रेज़िस्टन्स (आम तौर पर 0 °C) <br>α = रेज़िस्टन्स का टेंपरेचर कोएफिशिएंट (°C‾1)</p>
+<p>t0 से 0°C की स्थापना करना और मानक लिनियर y = m * xb फॉर्म को पुनर्व्यवस्थित करना, यह स्पष्ट है कि रेज़िस्टन्स बनाम तापमान स्लोप के साथ </p>
+<pre><code>                                R / R0 = α*t + 1 के बराबर लिनियर है
+
+</code></pre>
+<center><img src="images/img2.png" title=""></center>
+
+<p>सैद्धांतिक रूप से, किसी भी धातु का उपयोग तापमान को मापने के लिए किया जा सकता है।  चयनित धातु में एक उच्च पिघलने वाला बिंदु और जंग के प्रभावों को झेलने की क्षमता होनी चाहिए।  इसलिए अधिकांश अनुप्रयोगों के लिए प्लेटिनम का चयन किया जाता है।  इसकी वांछनीय विशेषताओं में रासायनिक स्थिरता, शुद्ध रूप में उपलब्धता और विद्युत गुण शामिल हैं जो अत्यधिक पुनरुत्पादनीय हैं।</p>
+<p>α: के लिए समीकरण (1) को हल करना:
+α = (R100 - R0) /( R0 *(t-t0))<br>जहाँ,</p>
+<p>t = 100°C &amp; t0 = 0°C</p>
+<p>प्लैटिनम के लिए, α = 0.00385 Ω/Ω/°C </p>
+<p>RTD के रेज़िस्टन्स और तापमान के बीच संबंध कॉलेंडर-वैन डूसन समीकरण द्वारा अनुमानित किया जा सकता है जो,</p>
+<pre><code>   Rt / R0 = 1+ α [ t – δ((t/100)-1)(t/100) –β((t/100)-1)(t/100)3] द्वारा दिया जाता है,
+</code></pre>
+<p>जहाँ,</p>
+<p>t = तापमान (°C) <br>Rt = तापमान पर रेज़िस्टन्स, t°C <br>R0 = रेज़िस्टन्स at 0°C <br>α = Constant ( 0.00385Ω/Ω/°C )</p>
+<p>δ & β   लाइनेराइजेशन कोएफिशिएंट्स हैं, जहां t > 0°C के लिए β = 0</p>
+<p>कॉलेंडर-वैन डूसन समीकरण का उपयोग मानक IEC 751 में किया जाता है जो RTDके लिए उपयोग किया जाने वाला सबसे लोकप्रिय मानक है।  IEC 751 में दिए गए RTD के लिए समीकरण है:</p>
+<pre><code>      Rt =R0 [1+ At+ Bt2 +C(t-100)t3 ]
+</code></pre>
+<p>जहाँ,
+A,B,C are कॉन्स्टंट्स और t > 0°C के लिए C = 0.</p>
+<p>α = 0.00385 के लिए A,B and C  मूल्य हैं <br>A = 3.9083<em>10-3°C‾1 <br>B = -5.775</em>10-7°C‾2 <br>C = -4.183*10-12°C‾4 </p>
+<p>प्लेटिनम RTDs को DIN 43760 (BS1904),IEC 751-1983 और JIS C1604 जैसे मानकों द्वारा परिभाषित किया गया है।</p>
+<h3 id="rtd-materials">RTD मटेरिअल्स:</h3>
+<p>एक RTD के लिए एक सामग्री का चयन करने के लिए निकष:</p>
+<ul>
+<li><p>छोटे तार बनाने की मॉलिएबिलिटी।p>
+</li>
+<li><p>रेज़िस्टन्स और तापमान का लिनियर संबंध।</p>
+</li>
+<li><p>पुनरावृत्ति और स्थिरता।</p>
+</li>
+<li><p>कोरोझन।</p>
+</li>
+<li><p>कम लागत</p>
+</li>
+<li><p>सहज उपलब्धता</p>
+<h3 id="rtd-performance-specifications">RTD प्रदर्शन विनिर्देशों:</h3>
+</li>
+</ul>
+<ol>
+<li><p>तापमान गुणांक: यह तापमान में प्रति डिग्री परिवर्तन सामग्री के रेज़िस्टन्स में परिवर्तन है।  यह मूल्य तापमान माप की उच्च सटीकता देने के लिए यथासंभव अधिक होना चाहिए।</p>
+<center><img src="images/img3.png" title=""></center>
+</li>
+<li><p>सटीकता: यह मानक परिणामों के साथ माप की तुलना है। यह एक मान्यता प्राप्त मानक के साथ तुलना करने पर डेटा कितना अच्छा है।  एक माप प्रणाली की सटीकता अपने वास्तविक (सही) मूल्य के लिए एक मात्रा के माप की निकटता की डिग्री है।</p>
+</li>
+<li><p>स्थिरता: यह समय के साथ झुकाव का माप है।  सेंसर डिजाइन से स्थिरता प्रभावित होती है।  अच्छी तरह से डिज़ाइन किया गया , उच्च गुणवत्ता सेंसर कम झुकाव का होगा जबकि उच्च कंपन, यांत्रिक  घिस-पिस और थर्मल शॉक स्थिरता को घटाएगा।</p>
+</li>
+<li><p>अंतर्विनिमेयता:अंतर्विनिमेयता सेंसर से सेंसर तक बेस टालरन्स और टेंपरेचर कोएफिशिएंट में परिवर्तन का उपाय है। सेंसर को बदलते समय यह महत्वपूर्ण है कि यह सुनिश्चित करने के लिए कि सिस्टम रि-कैलिबरेशन की आवश्यकता के बिना अपनी प्रदर्शन विशेषताओं को बरकरार रखता है।</p>
+</li>
+<li><p>प्रतिक्रिया समय: प्रतिक्रिया समय वह समय होता है जब सेंसर किसी प्रक्रिया में तापमान परिवर्तन पर प्रतिक्रिया करता है।</p>
+</li>
+</ol>
+<h3 id="factors-that-influence-the-sensor-response">कारक जो सेंसर प्रतिक्रिया को प्रभावित करते हैं:</h3>
+<ul>
+<li>थर्मल लैग थर्मोवेल के साथ संयुक्त होने पर </li>
+<li>इमर्शन लेंग्थ </li>
+<li>प्रोसेस फ्लुइड का फ्लो वेलॉसिटी </li>
+<li>प्रोसेस फ्लुइड ट्रैन्झिअन्ट </li>
+<li>संवेदन सतह पर फ्लुइड बाउन्ड्री या फिल्म </li>
+<li>बर्तन या उसकी दिवार का प्रभाव </li>
+<li>पर्यावरणीय कारक</li>
+</ul>
+<ol start="6">
+<li><p>इन्सुलेशन रेज़िस्टन्स: यह RTD की त्रुटियों और विफलता का सबसे बड़ा कारण है।  कारण एक अपर्याप्त सील, उच्च आर्द्रता वातावरण, या एक असफल सील हो सकता है।  कुछ मामलों में RTD असेंबली को सेंकने से इन्सुलेशन रेज़िस्टन्स बढ़ेगा और RTD की पुनः प्राप्ती होगी।</p>
+</li>
+<li><p>स्व हीटिंग: विद्युत प्रवाह लागू होने पर संवेदन तत्वों में बहुत छोटे क्रॉस-सेक्शनल एरिया गर्म हो जाएंगे।  अधिकांश RTD को 1 मिलीमीटर या उससे कम के करंट के साथ संचालित करने के लिए निर्दिष्ट किया जाता है।</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+<div class="row px-5 mx-0">
+<div class="col d-flex flex-column">
+<span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">कम्युनिटी लिंक्स</span>
+<a href="https://www.sakshat.ac.in/" class="text-light">साक्षात पोर्टल</a>
+<a href="http://outreach.vlabs.ac.in/" class="text-light">आउटरीच पोर्टल</a>
+<a href="https://vlab.co.in/faq" class="text-light">FAQ: वर्चुअल लैब्स</a>
+</div>
+<div class="col d-flex flex-column">
+<span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">हमसे संपर्क करें</span>
+<span> फोन: सामान्य जानकारी: 011-26582050 </span>
+<span> ईमेल: support@vlabs.ac.in </span>
+</div>
+<div class="col d-flex flex-column">
+<span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">हमारा अनुसरण करें</span>
+<div class="social-links">
+<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs">
+<i class="fa fa-twitter"></i>
+</a>
+<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/">
+<i class="fa fa-facebook"></i>
+</a>
+<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0">
+<i class="fa fa-youtube"></i>
+</a>
+<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136">
+<i class="fa fa-linkedin"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
+<a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html"> AGPL 3.0 </a>
+&nbsp;&amp;&nbsp;
+<a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> क्रिएटिव कॉमन्स (CC BY-NC-SA 4.0) </a>
+</div>
+</footer>
+
+<script src="./assets/js/toggleSidebar.js"></script>
+
+
+
+</body></html>
